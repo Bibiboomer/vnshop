@@ -1,14 +1,7 @@
 <template>
   <div id="app">
-        <nav class="container">
-
-            <div class="row">
-                <div class="col-md-6">.
-                    div.
-                    col-md-8</div>
-                <div class="col-md-6">.col-md-4</div>
-            </div>
-        </nav>
+       
+        <router-view></router-view>
   </div>
 </template>
 
@@ -18,51 +11,12 @@
   }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<style scoped lang = "less">
+#app  {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
 }
-.layout{
-      border: 1px solid #d7dde4;
-      background: #f5f7f9;
-      position: relative;
-      border-radius: 4px;
-      overflow: hidden;
-  }
-  .layout-logo{
-      width: 100px;
-      height: 30px;
-      background: #5b6270;
-      border-radius: 3px;
-      float: left;
-      position: relative;
-      top: 15px;
-      left: 20px;
-  }
-  .layout-header{
-      height: 60px;
-      background: #fff;
-      box-shadow: 0 1px 1px rgba(0,0,0,.1);
-  }
-  .layout-copy{
-      text-align: center;
-      padding: 10px 0 20px;
-      color: #9ea7b4;
-  }
-  .layout-ceiling{
-      background: #333;
-      padding: 10px 0;
-      overflow: hidden;
-  }
-  .layout-ceiling-main{
-      float: right;
-      margin-right: 15px;
-  }
-  .layout-ceiling-main a{
-      color: #9ba7b5;
-  }
+
 </style>
