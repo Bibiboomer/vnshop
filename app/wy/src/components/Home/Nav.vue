@@ -17,36 +17,105 @@
                 </div>
             </div>
         </nav>
-
-        <section class="ct-logo-ser">
+ 
+        <section id="ct-logo-ser">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-12">
-                    <ul>
-                        <li><a><img src="../../assets/images/icon.png" /></a></li>
-                        <li>
-                            <input type="text">
-                            <i></i>
-                        </li>
-                        <li><a></a></li>
-                        
-                    </ul>
-                        
+                    <div class="col-md-12">
+                        <div class="logo_ser-box">
+
+                            <div>
+                                <a class="search-btn" href="cart.html">
+                                    <i class="icon-cart"></i>
+                                    <i id="cart-num">0</i>
+                                </a>
+                                <div class="search-input-wrap hidden-xs">
+                                    <div class="input-icon ">
+                                        <i class="glass"></i>
+                                    </div>
+                                    <input type="text" maxlength="100" id="search-input" placeholder="serach...">
+                                </div>
+                            </div> 
+
+                        </div>
+                </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="hot-goods">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+                            <el-menu-item index="1">
+                                <a href="https://www.ele.me" target="_blank">订单管理</a>
+                            </el-menu-item>
+                            <el-menu-item index="2">
+                                <a href="https://www.ele.me" target="_blank">订单管理</a>
+                            </el-menu-item>
+                            <el-menu-item index="3">
+                                <a href="https://www.ele.me" target="_blank">订单管理</a>
+                            </el-menu-item>
+                        </el-menu>                    
                     </div>
                 </div>
             </div>
         </section>
+
         
     </div>
 </template>
 
 <script>
-  export default {
-    name: 'Home_nav'
-  }
+
+export default {
+    name: 'Home_nav' ,
+    data() {
+        return {
+            activeIndex: '1',
+            activeIndex2: '1'
+        };
+    },
+    methods: {
+        getGoods(){
+            this.$axios.get("http://h6.duchengjiu.top/shop/api_cat.php")
+            .then( res => {
+                console.log(res);
+                let data = res.data.data;
+                console.log(data);
+                for( var i = 0 ; i < data.length ; i++){
+                    //DOM操作
+                    // $("#js-list-item>ul").append('<li><a href="list.html?cat_id=' +data.data[i].cat_id+ '">' + data.data[i].cat_name +  '</a></li>');
+                }
+
+
+              
+                
+            })
+        },
+        handleSelect(key, keyPath) {
+            console.log(key, keyPath);
+        }
+    },
+    mounted() {
+        this.getGoods();
+        
+    }
+}
+
+
 </script>
 
 <style scoped lang = "less">
+
+// 混合
+.navbox-shadow ( @shadow:0 0 3px 1px rgba(51,51,51,0.1)){
+    -webkit-box-shadow: @shadow;
+    -moz-box-shadow: @shadow;
+    box-shadow: @shadow;
+}
+
 a{
     color:#ccc;
     background:unset;
@@ -87,14 +156,73 @@ nav.navbar{
             text-decoration: none;
         }
 }
-section.ct-logo-ser{
-    li{
-        float:left;
-    }
-    li>a{
-        width:180px;
-        height:60px;
-        display: inline-block;
+#ct-logo-ser{
+    .logo_ser-box{
+        height:204px;
+        background:url(../../assets/images/logo.gif) no-repeat;
+        background-position: center 0px;
+
+        .logo_ser-box>div{
+            position: relative;
+            top: 50px;  
+        }
+        .search-btn{
+            position:relative;
+            top: 30px;
+            left: 250px;
+            display: inline-block;
+            height:10px;
+            background-color:red;
+
+            .icon-cart{
+                width: 23px;
+                height: 23px;
+                position: absolute;
+                top: 15px;
+                left: 249px;
+                background: url(../../assets/images/cart.png) no-repeat;
+            }
+            #cart-num{
+                text-align: center;
+                color: #fff;
+                position: absolute;
+                top: 0px;
+                left: 264px;
+                width: 19px;
+                height: 27px;
+                background: url(../../assets/images/icon-normal.png) no-repeat;
+                background-position: 0px -258px;
+            }
+        }
+
+        .search-input-wrap{
+            text-align: right;
+           
+
+            i.glass{
+                position: absolute;
+                right:10px;
+                top: 45px;
+                width: 35px;
+                height: 30px;
+                background: url(../../assets/images/logo.png) no-repeat;
+                background-position: 8px -108px;
+                background-size: 180px;
+            }
+            input{
+                border: none;
+                border-bottom: 1px solid #D8CEBC;
+                border-radius: 0;
+                font-size: 12px;
+                line-height: 23px;
+                color: #333;
+                width: 240px;
+                margin-top: 30px;
+                margin-right: 15px;
+                height: 23px;
+            }
+           
+        }
     }
 }
 

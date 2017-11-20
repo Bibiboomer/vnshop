@@ -5,10 +5,13 @@ import App from './App';
 import router from './router';
 
 import 'bootstrap/dist/css/bootstrap.css';
-
+import ElementUI from 'element-ui';
+Vue.use(ElementUI);
 
 Vue.config.productionTip = false;
 
+import axios from 'axios';
+Vue.prototype.$axios = axios;
 
 /* eslint-disable no-new */
 new Vue({

@@ -46,8 +46,18 @@ module.exports = {
     // In our experience, they generally work as expected,
     // just be aware of this issue when enabling this option.
     cssSourceMap: false,
+
+    proxtTable: {
+      '/http://h6.duchengjiu.top': {
+        target: 'http://localhost:8080/#',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/http://h6.duchengjiu.top': '/http://h6.duchengjiu.top'
+        }
+
+      }
+    }
   },
-  
   build: {
     // Template for index.html
     index: path.resolve(__dirname, '../dist/index.html'),
