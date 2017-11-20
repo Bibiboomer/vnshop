@@ -47,17 +47,13 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-                            <el-menu-item index="1">
-                                <a href="https://www.ele.me" target="_blank">订单管理</a>
-                            </el-menu-item>
-                            <el-menu-item index="2">
-                                <a href="https://www.ele.me" target="_blank">订单管理</a>
-                            </el-menu-item>
-                            <el-menu-item index="3">
-                                <a href="https://www.ele.me" target="_blank">订单管理</a>
-                            </el-menu-item>
-                        </el-menu>                    
+                        <el-table :data = "tableData">
+                            <el-table-column 
+                                align = "center"
+                                prop ="cat_name" label ="">
+                            
+                            </el-table-column>
+                        </el-table>
                     </div>
                 </div>
             </div>
@@ -73,21 +69,22 @@ export default {
     name: 'Home_nav' ,
     data() {
         return {
-            activeIndex: '1',
-            activeIndex2: '1'
+            tableData: []
         };
     },
     methods: {
         getGoods(){
-            this.$axios.get("http://h6.duchengjiu.top/shop/api_cat.php")
+            let _this = this;
+            _this.$axios.get("http://h6.duchengjiu.top/shop/api_cat.php")
             .then( res => {
                 console.log(res);
                 let data = res.data.data;
+                _this.tableData = data;
                 console.log(data);
-                for( var i = 0 ; i < data.length ; i++){
-                    //DOM操作
-                    // $("#js-list-item>ul").append('<li><a href="list.html?cat_id=' +data.data[i].cat_id+ '">' + data.data[i].cat_name +  '</a></li>');
-                }
+                // for( var i = 0 ; i < data.length ; i++){
+                //     //DOM操作
+                //     // $("#js-list-item>ul").append('<li><a href="list.html?cat_id=' +data.data[i].cat_id+ '">' + data.data[i].cat_name +  '</a></li>');
+                // }
 
 
               
@@ -107,7 +104,12 @@ export default {
 
 </script>
 
-<style scoped lang = "less">
+<style lang = "less">
+
+.el-table__row {
+    display: inline-block!important;
+    min-width: 40px!important;
+}
 
 // 混合
 .navbox-shadow ( @shadow:0 0 3px 1px rgba(51,51,51,0.1)){
